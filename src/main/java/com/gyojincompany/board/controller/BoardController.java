@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.gyojincompany.board.command.BCommand;
+import com.gyojincompany.board.command.BWriteCommand;
+
 /**
  * Servlet implementation class BoardController
  */
@@ -48,6 +51,8 @@ public class BoardController extends HttpServlet {
 		String conPath = request.getContextPath();//컨택스트 패스만 분리하여 저장
 		String command = uri.substring(conPath.length());
 		
+		BCommand bCommand = null;
+		
 		System.out.println("command : "+command);
 		
 		String viewPage = "/error.jsp";//view의 이름
@@ -56,8 +61,9 @@ public class BoardController extends HttpServlet {
 			viewPage = "/write_form.jsp";
 		} else if(command.equals("/write.do")) {
 			
-			
-			
+			//BWriteCommand bWriteCommand = new BWriteCommand();
+			bCommand = new BWriteCommand();
+			bCommand.execute(request, response);
 			
 			viewPage = "/board_list.jsp";
 		}
