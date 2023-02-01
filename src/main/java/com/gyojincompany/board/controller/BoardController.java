@@ -65,6 +65,12 @@ public class BoardController extends HttpServlet {
 			bCommand = new BWriteCommand();
 			bCommand.execute(request, response);
 			
+			viewPage = "/list.do";
+		} else if(command.equals("/list.do" )) {
+			
+			
+			
+			
 			viewPage = "/board_list.jsp";
 		}
 		
