@@ -1,6 +1,8 @@
 package com.gyojincompany.board.controller;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class BoardController
  */
-@WebServlet("/*.do")
+@WebServlet("*.do")
 public class BoardController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -48,9 +50,22 @@ public class BoardController extends HttpServlet {
 		
 		System.out.println("command : "+command);
 		
-		String viewPage = null;//view의 이름
+		String viewPage = "/error.jsp";//view의 이름
+		
+		if(command.equals("/writeForm.do")) {
+			viewPage = "/write_form.jsp";
+		} else if(command.equals("/write.do")) {
+			
+			
+			
+			
+			viewPage = "/board_list.jsp";
+		}
 		
 		
+		
+		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
+		dispatcher.forward(request, response);
 	}
 
 }

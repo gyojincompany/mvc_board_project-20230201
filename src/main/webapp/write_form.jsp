@@ -9,8 +9,8 @@
 <body>
 	<h2>게시판 글쓰기</h2>
 	<hr>
-	<table boder="1" cellpadding="0" cellspacing="0" width="500">
-		<form>
+	<table border="1" cellpadding="0" cellspacing="0" width="500">
+		<form action="write.do">
 			<tr>
 				<td>제 목</td>
 				<td><input type="text" name="btitle" size="50"></td>
