@@ -73,6 +73,9 @@ public class BoardController extends HttpServlet {
 			bCommand.execute(request, response);
 			
 			viewPage = "/board_list.jsp";
+		} else if(command.equals("/contentView.do" )) {
+			
+			viewPage = "/content_view.jsp";
 		}
 		
 		
