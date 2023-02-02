@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.gyojincompany.board.command.BCommand;
 import com.gyojincompany.board.command.BContentViewCommand;
+import com.gyojincompany.board.command.BDeleteCommand;
 import com.gyojincompany.board.command.BListCommand;
 import com.gyojincompany.board.command.BModifyCommand;
 import com.gyojincompany.board.command.BWriteCommand;
@@ -90,6 +91,12 @@ public class BoardController extends HttpServlet {
 		} else if(command.equals("/modify.do" )) {
 			
 			bCommand = new BModifyCommand();
+			bCommand.execute(request, response);
+			
+			viewPage = "/list.do";
+		} else if(command.equals("/delete.do" )) {
+			
+			bCommand = new BDeleteCommand();
 			bCommand.execute(request, response);
 			
 			viewPage = "/list.do";

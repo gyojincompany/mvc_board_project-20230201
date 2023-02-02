@@ -111,6 +111,9 @@ public class BoardDao {
 	
 	public BoardDto contentView(String boardNum) {//목록에서 유저가 클릭한 글 1개만 가져오기
 		
+		//조회수 늘려주는 메서드(boardNum);
+		upHit(boardNum);//해당 글의 번호로 조회하여 조회수 1씩 증가		
+		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -201,5 +204,69 @@ public class BoardDao {
 		
 	}
 	
+	public void delete(String bid) {//글삭제
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		
+		String sql="DELETE FROM mvc_board WHERE bid=?";
+		
+		try {
+			Class.forName(driverName);//jdbc 드라이버 불러오기
+			conn = DriverManager.getConnection(url, user, pass);//DB 커넥션 생성
+			pstmt = conn.prepareStatement(sql);//sql 객체 생성		
+			
+			pstmt.setString(1, bid);//글번호
+			
+			pstmt.executeUpdate();//sql 실행
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(pstmt != null) {
+					pstmt.close();
+				}
+				if(conn != null) {
+					conn.close();
+				}
+				
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+	}
 	
+	public void upHit(String bid) {//조회수 1씩 증가
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		
+		String sql="UPDATE mvc_board SET bhit=bhit+1 WHERE bid=?";
+		
+		try {
+			Class.forName(driverName);//jdbc 드라이버 불러오기
+			conn = DriverManager.getConnection(url, user, pass);//DB 커넥션 생성
+			pstmt = conn.prepareStatement(sql);//sql 객체 생성		
+			
+			pstmt.setString(1, bid);//글번호
+			
+			pstmt.executeUpdate();//sql 실행
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(pstmt != null) {
+					pstmt.close();
+				}
+				if(conn != null) {
+					conn.close();
+				}
+				
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+	}
 }
