@@ -24,7 +24,7 @@
 		</tr>
 		<tr>
 			<td colspan="4" align="right">
-				<input type="button" value="수정" onclick="javascript:window.location=''">
+				<input type="button" value="수정" onclick="javascript:window.location='contentModify.do?bid=${dto.bid}'">
 				<input type="button" value="삭제" onclick="javascript:window.location=''">
 				<input type="button" value="목록" onclick="javascript:window.location='list.do'">
 			</td>
